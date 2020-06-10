@@ -5,5 +5,4 @@
  */
 
 void FormatJEDEC(int gal,char *fuses,char *buffer);
-static int ParseFuseMap(char *ptr);
 BOOL CheckJEDEC();
