@@ -4,9 +4,15 @@
  * original is GALBlast.c
  */
 
+#include <stdio.h>
+#include <strings.h>
+#include <unistd.h>
+
 #include "WinTypes.h"
 
 #include "gal.h"
+#include "bitbang.h"
+#include "jedec.h"
 
 static int cfg16V8[]=
 {
@@ -306,7 +312,7 @@ static BOOL TurnOn(int mode)
     return TRUE;
 }
 
-static void GetPES(char pes[])
+static void GetPES(unsigned char pes[])
 {
     int bitmask,byte;
 
@@ -322,7 +328,7 @@ static void GetPES(char pes[])
     }
 }
 
-static void ReadPES(char pes[])
+static void ReadPES(unsigned char pes[])
 {
     TurnOn(READPES);
     GetPES(pes);
@@ -772,8 +778,13 @@ BOOL TestProperGAL()
     return TRUE;
 }
 
+int infocount()
+{
 
-BOOL setgaltype(char *type)
+    return sizeof(galinfo)/sizeof(galinfo[0]);
+}
+
+BOOL SetGALType(char *type)
 {
 int i;
 
@@ -788,12 +799,6 @@ int i;
         return FALSE;
 
     return TRUE;
-}
-
-int infocount()
-{
-
-    return sizeof(galinfo)/sizeof(galinfo[0]);
 }
 
 BOOL TestOP()

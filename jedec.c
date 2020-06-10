@@ -4,6 +4,10 @@
  * original is GALBLAST.C
  */
 
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
 #include "WinTypes.h"
 #include "gal.h"
 

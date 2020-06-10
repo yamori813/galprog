@@ -7,6 +7,11 @@
 #include <string.h>
 #include <sys/stat.h>
 
+#include "WinTypes.h"
+
+#include "gal.h"
+#include "bitbang.h"
+
 char buffer[16348];
 
 int main(int argc, char *argv[])
@@ -19,7 +24,7 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	if (setgaltype(argv[2])) {
+	if (SetGALType(argv[2])) {
 		if(strcmp(argv[1], "t") ==0) {
 			if(OpenFTDI()) {
 				if (TestProperGAL()) {

@@ -44,3 +44,10 @@ struct _galinfo
     int cfgbits;
 };
 
+int infocount();
+BOOL TestOP();
+BOOL EraceOP();
+BOOL ReadOP();
+BOOL WriteOP();
+BOOL SetGALType(char *type);
+BOOL TestProperGAL();
