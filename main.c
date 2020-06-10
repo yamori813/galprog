@@ -4,6 +4,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include <sys/stat.h>
 
 char buffer[16348];
@@ -52,6 +53,7 @@ int main(int argc, char *argv[])
 				int size;
 				size = jedec_stat.st_size;
 				fread(buffer, 1, size, jedec);
+				fclose(jedec);
 				buffer[size] = '\0';
 				if(OpenFTDI()) {
 					if (TestProperGAL()) {
