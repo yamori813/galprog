@@ -8,7 +8,6 @@
 #define NATIONAL 0x8F
 #define SGSTHOMSON 0x20
 
-static char *caption[]={"Read GAL","Verify GAL","Read PES","Test SCLK","Write GAL","Erase GAL","Erase ALL","Burn Security","Write PES","VPP Test"};
 #define READGAL 0
 #define VERIFYGAL 1
 #define READPES 2
