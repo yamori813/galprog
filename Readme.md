@@ -1,5 +1,7 @@
 GAL Programer by FT2232 
 
+You must use 5V FT2232. Because of GAL is 5V. 
+
 Connection 
 
 |FT2232|GAL|
