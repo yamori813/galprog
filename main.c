@@ -66,6 +66,8 @@ int main(int argc, char *argv[])
 						CloseFTDI();
 					}
 				}
+			} else {
+				printf("Can't open %s\n", argv[3]);
 			}
 		}
 	}
