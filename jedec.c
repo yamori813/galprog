@@ -137,7 +137,7 @@ void FormatJEDEC(int gal,char *fuses,char *buffer)
 	    n+=sprintf(buffer+n," %02X",ch);
 	}
     }
-    n+=sprintf(buffer+n,"\"*\r\nL%04d "+unquote,k);
+    n+=sprintf(buffer+n,"\"*\r\nL%04d ",k);
     for(j=0;j<8*galinfo[gal].uesbytes;j++)
     {
 	if(fuses[k]) unused=FALSE;
@@ -354,8 +354,8 @@ static int ParseFuseMap(char *ptr)
 	}
 	for(type=0,i=1;i<infocount();i++)
 	{
-	    if((lastfuse==0||galinfo[i].fuses==lastfuse||galinfo[i].uesfuse==lastfuse&&galinfo[i].uesfuse+8*galinfo[i].uesbytes==galinfo[i].fuses)
-	    && (pins==0||galinfo[i].pins==pins||galinfo[i].pins==24&&pins==28))
+	    if((lastfuse==0||galinfo[i].fuses==lastfuse||(galinfo[i].uesfuse==lastfuse&&galinfo[i].uesfuse+8*galinfo[i].uesbytes==galinfo[i].fuses))
+	    && (pins==0||galinfo[i].pins==pins||(galinfo[i].pins==24&&pins==28)))
 	    {
 		if(gal==0)
 		{
