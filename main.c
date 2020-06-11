@@ -14,13 +14,23 @@
 
 char buffer[16348];
 
+extern struct _galinfo galinfo[];
+
 int main(int argc, char *argv[])
 {
+int i;
 
 	if (argc < 3 || (strcmp(argv[1], "t") != 0 &&
 	    strcmp(argv[1], "e") != 0 &&
 	    strcmp(argv[1], "r") != 0 && strcmp(argv[1], "w") != 0)) {
-		printf("usage: galprog [t,e,r,w] <chip type> <file name>\n");
+		printf("usage: galprog [t,e,r,w] <device> <file name>\n");
+		printf("Support devices: ");
+		for (i = 1; i < infocount(); ++i) {
+			if (i != 1)
+				printf(",");
+			printf("%s", galinfo[i].name);
+		}
+		printf("\n");
 		return 1;
 	}
 
