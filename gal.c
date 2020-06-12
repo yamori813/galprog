@@ -808,7 +808,31 @@ int i;
     for (i = 0; i < galinfo[gal].pesbytes; ++i)
         printf("%02x ",pes[i]);
     printf("\n");
-    printf("VPP=%d.%02dV Pulse=%dms Erase=%dms\n",vpp/4,(vpp%4)*25,pulse,erase);
+    if(pes[1]&0x10)
+    {
+        strcpy(buffer,"3.3V");
+    }
+    else
+    {
+        strcpy(buffer,"5V");
+     }
+     switch(pes[3])
+     {
+         case LATTICE:
+             strcat(buffer," Lattice ");
+             break;
+         case NATIONAL:
+             strcat(buffer," National ");
+             break;
+         case SGSTHOMSON:
+           strcat(buffer," ST Microsystems ");
+           break;
+         default:
+         strcpy(buffer," Unknown ");
+    }
+    strcat(buffer,galinfo[gal].name);
+    i=strlen(buffer);
+    sprintf(buffer+i," VPP=%d.%02dV Pulse=%dms Erase=%dms",vpp/4,(vpp%4)*25,pulse,erase);
     return TRUE;
 }
 

@@ -39,6 +39,7 @@ int i;
 			if(OpenFTDI()) {
 				if (TestProperGAL()) {
 					TestOP();
+					printf("%s\n", buffer);
 					CloseFTDI();
 				}
 			}
