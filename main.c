@@ -7,7 +7,14 @@
 #include <string.h>
 #include <sys/stat.h>
 
+#if defined(__APPLE__)
 #include "WinTypes.h"
+#endif
+
+#if defined(_WIN32)
+#pragma comment(lib, "ftd2xx.lib")
+#include <windows.h>
+#endif
 
 #include "gal.h"
 #include "bitbang.h"
@@ -15,6 +22,21 @@
 char buffer[16348];
 
 extern struct _galinfo galinfo[];
+
+#if defined(_WIN32)
+void usleep(__int64 usec)
+{
+	HANDLE timer;
+	LARGE_INTEGER ft;
+
+	ft.QuadPart = -(10 * usec);
+
+	timer = CreateWaitableTimer(NULL, TRUE, NULL);
+	SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0);
+	WaitForSingleObject(timer, INFINITE);
+	CloseHandle(timer);
+}
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -65,7 +87,11 @@ int i;
 			FILE *jedec;
 			if ((jedec = fopen(argv[3], "rb")) != NULL) {
 				struct stat jedec_stat;
+#if defined(_WIN32)
+				fstat(_fileno(jedec), &jedec_stat);
+#else
 				fstat(fileno(jedec), &jedec_stat);
+#endif
 				int size;
 				size = jedec_stat.st_size;
 				fread(buffer, 1, size, jedec);

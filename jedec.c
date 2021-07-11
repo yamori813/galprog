@@ -8,7 +8,14 @@
 #include <string.h>
 #include <ctype.h>
 
+#if defined(__APPLE__)
 #include "WinTypes.h"
+#endif
+
+#if defined(_WIN32)
+#include <windows.h>
+#endif
+
 #include "gal.h"
 
 extern struct _galinfo galinfo[];

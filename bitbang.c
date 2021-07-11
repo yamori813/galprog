@@ -5,7 +5,10 @@
  */
 
 #include <stdio.h>
+#if defined(__APPLE__)
 #include <unistd.h>
+#endif
+
 #include "ftd2xx.h"
 
 FT_HANDLE datHandle = NULL;

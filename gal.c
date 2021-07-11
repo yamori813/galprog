@@ -5,10 +5,17 @@
  */
 
 #include <stdio.h>
+#if defined(__APPLE__)
 #include <strings.h>
 #include <unistd.h>
 
 #include "WinTypes.h"
+#endif
+
+#if defined(_WIN32)
+#include <windows.h>
+#define strcasecmp _stricmp
+#endif
 
 #include "gal.h"
 #include "bitbang.h"

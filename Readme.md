@@ -20,3 +20,7 @@ CLK is connect to GND.
 
 VPP make by voltage step up converter MAX662A. This chip out 12V and 20V. 
 Write VPP make LM317 from 20V. 
+
+This project start on Mac OS X. Also you can build on Windows. 
+
+If you want build on Windows you need set _CRT_SECURE_NO_WARNINGS. 
